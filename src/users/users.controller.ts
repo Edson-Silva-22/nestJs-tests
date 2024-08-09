@@ -9,9 +9,9 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto, @Res() response: Response) {
+  async create(@Body() createUserDto: CreateUserDto, @Res() response?: Response) {
     const result = await this.usersService.create(createUserDto);
-    return response.status(result.status).json(result)
+    return response?.status(result?.status).json(result)
   }
 
   @Get()
