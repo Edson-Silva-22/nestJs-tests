@@ -15,26 +15,26 @@ export class UsersController {
   }
 
   @Get()
-  async findAll(@Res() response: Response) {
+  async findAll(@Res() response?: Response) {
     const result = await this.usersService.findAll();
-    return response.status(result.status).json(result)
+    return response?.status(result?.status).json(result)
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string, @Res() response: Response) {
+  async findOne(@Param('id') id: string, @Res() response?: Response) {
     const result = await this.usersService.findOne(id);
-    return response.status(result.status).json(result)
+    return response?.status(result?.status).json(result)
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto, @Res() response: Response) {
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto, @Res() response?: Response) {
     const result = await this.usersService.update(id, updateUserDto);
-    return response.status(result.status).json(result)
+    return response?.status(result?.status).json(result)
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string, @Res() response: Response) {
+  async remove(@Param('id') id: string, @Res() response?: Response) {
     const result = await this.usersService.remove(id);
-    return response.status(result.status).json(result)
+    return response?.status(result?.status).json(result)
   }
 }
