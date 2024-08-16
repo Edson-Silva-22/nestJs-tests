@@ -16,16 +16,8 @@ export class UsersService {
       const ifUserExist = await this.userModel.find({name: createUserDto.name})
 
       if (ifUserExist.length > 0) {
-        
-        if(ifUserExist[0].email === createUserDto.email){
-          return {
-            message: 'Já existe um usuário com esse email.',
-            status: 400
-          }
-        }
-
         return {
-          message: 'Já existe um usuário com esse nome.',
+          message: 'Nome ou email já esta em uso por outro usuário.',
           status: 400
         }
       }
