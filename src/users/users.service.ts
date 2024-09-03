@@ -17,13 +17,13 @@ export class UsersService {
 
       if (ifUserExist.length > 0) {
         return {
-          message: 'Já existe um usuário com esse nome.',
+          message: 'Nome ou email já esta em uso por outro usuário.',
           status: 400
         }
       }
 
+      
       const createUser = await this.userModel.create(createUserDto)
-      createUser.save()
       
       return {
         result: createUser,
