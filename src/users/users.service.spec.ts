@@ -54,16 +54,16 @@ describe('UsersService', () => {
       mockUserModel.create.mockResolvedValue(createUserDto);
 
       const result = await service.create(createUserDto);
+      
+      //Verificando se o método find do mongoose esta sendo chamado apenas uma vez dentro do service.
+      expect(mockUserModel.find).toHaveBeenCalledTimes(1)
+      //Verificando se o método find do mongoose foi chamado com o parâmetro certo dentro do service.
+      expect(mockUserModel.find).toHaveBeenCalledWith({name: createUserDto.name})
 
       //Verificando se o método create do mongoose esta sendo chamado apenas uma vez dentro do service.
       expect(mockUserModel.create).toHaveBeenCalledTimes(1)
       //Verificando se o método create do mongoose foi chamado com o parâmetro certo dentro do service.
       expect(mockUserModel.create).toHaveBeenCalledWith(createUserDto)
-
-      //Verificando se o método find do mongoose esta sendo chamado apenas uma vez dentro do service.
-      expect(mockUserModel.find).toHaveBeenCalledTimes(1)
-      //Verificando se o método find do mongoose foi chamado com o parâmetro certo dentro do service.
-      expect(mockUserModel.find).toHaveBeenCalledWith({name: createUserDto.name})
 
       expect(result).toEqual({
         result: createUserDto,
